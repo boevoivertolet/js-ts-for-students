@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {splitIntoWords} from './01-hello-tests/01';
+import {sum} from './03-functions/03';
 
-const sentese = "hello my friends!";
-const result =splitIntoWords(sentese);
-console.log(result);
+
+
+let a =sum;
+
+
+
+
 
 
 ReactDOM.render(
