@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler, MouseEvent} from 'react';
 
 
 export const User = () => {
-    const deleteUser = (e: MouseEvent<HTMLButtonElement>) => {
+    const search = (e: MouseEvent<HTMLButtonElement>) => {
 
         alert(e.currentTarget.name)
     }
@@ -25,7 +25,7 @@ export const User = () => {
         <div>
             <textarea onChange={onNameChanged} onBlur={focusLost}>Sasha</textarea>
             <input onChange={onAgeChanged} type={'number'}/>
-            <button name="delete" onClick={deleteUser}>delete</button>
+            <button name="delete" onClick={search}>search</button>
         </div>
     )
 
