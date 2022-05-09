@@ -1,15 +1,39 @@
-import {usersObj} from './08';
 
 
-beforeEach(()=> {
+type UsersType = {
+    [key: string]: { id: number, name: string }
+}
+let users: UsersType = {
+    '101': {id: 101, name: 'Sasha'},
+    '76543': {id: 76543, name: 'Ulya'},
+    '1876543': {id: 1876543, name: 'Taras'},
+    '12456': {id: 12456, name: 'Galina'}
+}
+
+
+beforeEach(() => {
+    users = {
+        '101': {id: 101, name: 'Sasha'},
+        '76543': {id: 76543, name: 'Ulya'},
+        '1876543': {id: 1876543, name: 'Taras'},
+        '12456': {id: 12456, name: 'Galina'}
+    }
+
 
 })
 
 
-test('should select corresponding user from obj', ()=> {
+test('should update corresponding user from obj', () => {
+    users['101'].name = 'Aleksander'
 
-    expect(usersObj[0]).toBe('Sasha')
-    expect(usersObj[1]).toBe('Ulya')
-    expect(usersObj[2]).toBe('Taras')
-    expect(usersObj[3]).toBe('Galina')
+    expect(users['101'].name).toBe('Aleksander')
+
+
+})
+test('should delete corresponding user from obj', () => {
+    delete users['101']
+
+    expect(users['101']).toBeUndefined();
+
+
 })

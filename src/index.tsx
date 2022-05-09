@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {User} from './06-callback-onClick-onChange/06';
+import App from './App';
 
 
 
@@ -16,7 +16,7 @@ import {User} from './06-callback-onClick-onChange/06';
 
 ReactDOM.render(
   <React.StrictMode>
-    <User />
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
