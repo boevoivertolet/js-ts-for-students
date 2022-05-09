@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 export type ManType = {
     name: string
@@ -19,12 +19,22 @@ type PropsType = {
 
 }
 
+function useSashaState(m:string){
+    return[m, function(){}]
+}
+function useSashaState2(m:string){
+    return{message: m, setMessage: function(){}}
+}
+
+
 export const ManComponent: React.FC<PropsType> = ({title,man, ...props}) => {// Достань из проспсов тайтл и мэн. А всё остальное запихни в объект пропс
 
     /* const {title} = props
      const {name} = props.man*/
     /*const {title, man: {name}} = props*/
 
+
+   const[message, setMessage] = useSashaState('hello')
     return (
         <div>
             <h1>{title}</h1>
