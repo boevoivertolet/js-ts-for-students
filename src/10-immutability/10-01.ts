@@ -56,3 +56,11 @@ export function updateCompany(u: UserWithLaptopType & CompaniesType, id: number,
 
 }
 
+export function updateCompany2(companies: any, userName: string, id: number, title: string) {
+    let companiesCopy = {...companies}
+
+    companiesCopy[userName] = companiesCopy[userName].map(c => (c.id === id) ? {...c, title: title} : c)
+    return companiesCopy;
+}
+
+

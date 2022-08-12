@@ -2,14 +2,12 @@ import {
     addNewBooksToUser, CompaniesType,
     makeHairStyle,
     moveUser,
-    moveUserToOtherHouse, removeBook, updateBook, updateCompany,
+    moveUserToOtherHouse, removeBook, updateBook, updateCompany, updateCompany2,
     upgradeUserLaptop,
     UserType,
     UserWithBooksType,
     UserWithLaptopType
 } from './10-01';
-
-
 
 
 test.skip('reference type test', () => {
@@ -32,7 +30,6 @@ test.skip('reference type test', () => {
 })
 
 
-
 test.skip('change address', () => {
     let user: UserWithLaptopType = {
         name: 'Sasha',
@@ -41,7 +38,7 @@ test.skip('change address', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         }
     }
@@ -65,7 +62,7 @@ test.skip('upgrade laptop', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         }
     }
@@ -89,10 +86,10 @@ test('upgrade books', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         },
-        books:['css', 'html', 'js', 'react']
+        books: ['css', 'html', 'js', 'react']
     }
 
 
@@ -113,10 +110,10 @@ test.skip('add new books to user', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         },
-        books:['css', 'html', 'js', 'react']
+        books: ['css', 'html', 'js', 'react']
     }
 
 
@@ -141,14 +138,14 @@ test.skip('update books', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         },
-        books:['css', 'html', 'js', 'react']
+        books: ['css', 'html', 'js', 'react']
     }
 
 
-    const userCopy = updateBook(user,'js', 'ts')
+    const userCopy = updateBook(user, 'js', 'ts')
 
     expect(user).not.toBe(userCopy)
     expect(user.laptop).toBe(userCopy.laptop)
@@ -168,14 +165,14 @@ test.skip('remove js book', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         },
-        books:['css', 'html', 'js', 'react']
+        books: ['css', 'html', 'js', 'react']
     }
 
 
-    const userCopy = removeBook(user,'js')
+    const userCopy = removeBook(user, 'js')
 
     expect(user).not.toBe(userCopy)
     expect(user.laptop).toBe(userCopy.laptop)
@@ -187,7 +184,7 @@ test.skip('remove js book', () => {
     expect(userCopy.books).toEqual(['css', 'html', 'react'])
 
 })
-test('update company', () => {
+test.skip('update company', () => {
     let user: UserWithLaptopType & CompaniesType = {
         name: 'Sasha',
         hair: 32,
@@ -195,20 +192,34 @@ test('update company', () => {
             title: 'Spb',
             house: 9
         },
-        laptop:{
+        laptop: {
             title: 'ZenBook'
         },
-        companies: [ {id: 1 , title: 'tds'},{id: 2 , title: 'x-zone'}]
+        companies: [{id: 1, title: 'tds'}, {id: 2, title: 'x-zone'}]
     }
 
 
-    const userCopy = updateCompany(user,1,'Server' )
+    const userCopy = updateCompany(user, 1, 'Server')
 
     expect(user).not.toBe(userCopy)
     expect(user.laptop).toBe(userCopy.laptop)
     expect(user.address).toBe(userCopy.address)
     expect(userCopy.companies[0].title).not.toBe('tds')
     expect(userCopy.companies[0].title).toBe('Server')
-    expect(userCopy.companies).toEqual([ {id: 1 , title: 'Server'},{id: 2 , title: 'x-zone'}])
+    expect(userCopy.companies).toEqual([{id: 1, title: 'Server'}, {id: 2, title: 'x-zone'}])
 
+})
+test('update company Super Object', () => {
+
+    let companies = {
+        'Sasha': [{id: 1, title: 'tds'}, {id: 2, title: 'x-zone'}],
+        'Ulya': [{id: 2, title: 'x-zone'}]
+    }
+
+    let copy = updateCompany2(companies, 'Sasha', 1, 'Server')
+
+
+    expect(copy['Sasha']).not.toBe(companies['Sasha'])
+    expect(copy['Ulya']).toBe(companies['Ulya'])
+    expect(copy['Sasha'][0].title).toBe('Server')
 })
