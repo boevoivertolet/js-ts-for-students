@@ -2,7 +2,7 @@ import {
     addNewBooksToUser,
     makeHairStyle,
     moveUser,
-    moveUserToOtherHouse,
+    moveUserToOtherHouse, removeBook, updateBook,
     upgradeUserLaptop,
     UserType,
     UserWithBooksType,
@@ -105,7 +105,7 @@ test('upgrade books', () => {
     expect(userCopy.address.house).toBe(55)
 
 })
-test('add new books to user', () => {
+test.skip('add new books to user', () => {
     let user: UserWithLaptopType & UserWithBooksType = {
         name: 'Sasha',
         hair: 32,
@@ -130,5 +130,60 @@ test('add new books to user', () => {
     expect(userCopy.books[5]).toBe('rest api')
     expect(user.books.length).toBe(4)
     expect(userCopy.books.length).toBe(6)
+
+})
+
+test.skip('update books', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Sasha',
+        hair: 32,
+        address: {
+            title: 'Spb',
+            house: 9
+        },
+        laptop:{
+            title: 'ZenBook'
+        },
+        books:['css', 'html', 'js', 'react']
+    }
+
+
+    const userCopy = updateBook(user,'js', 'ts')
+
+    expect(user).not.toBe(userCopy)
+    expect(user.laptop).toBe(userCopy.laptop)
+    expect(user.address).toBe(userCopy.address)
+    expect(user.books).not.toBe(userCopy.books)
+    expect(userCopy.books[2]).toBe('ts')
+    expect(user.books.length).toBe(4)
+    expect(userCopy.books.length).toBe(4)
+    expect(userCopy.books).toEqual(['css', 'html', 'ts', 'react'])
+
+})
+test('remove js book', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Sasha',
+        hair: 32,
+        address: {
+            title: 'Spb',
+            house: 9
+        },
+        laptop:{
+            title: 'ZenBook'
+        },
+        books:['css', 'html', 'js', 'react']
+    }
+
+
+    const userCopy = removeBook(user,'js')
+
+    expect(user).not.toBe(userCopy)
+    expect(user.laptop).toBe(userCopy.laptop)
+    expect(user.address).toBe(userCopy.address)
+    expect(user.books).not.toBe(userCopy.books)
+    expect(userCopy.books[2]).not.toBe('js')
+    expect(user.books.length).toBe(4)
+    expect(userCopy.books.length).toBe(3)
+    expect(userCopy.books).toEqual(['css', 'html', 'react'])
 
 })
