@@ -1,8 +1,8 @@
 import {
-    addNewBooksToUser,
+    addNewBooksToUser, CompaniesType,
     makeHairStyle,
     moveUser,
-    moveUserToOtherHouse, removeBook, updateBook,
+    moveUserToOtherHouse, removeBook, updateBook, updateCompany,
     upgradeUserLaptop,
     UserType,
     UserWithBooksType,
@@ -160,7 +160,7 @@ test.skip('update books', () => {
     expect(userCopy.books).toEqual(['css', 'html', 'ts', 'react'])
 
 })
-test('remove js book', () => {
+test.skip('remove js book', () => {
     let user: UserWithLaptopType & UserWithBooksType = {
         name: 'Sasha',
         hair: 32,
@@ -185,5 +185,30 @@ test('remove js book', () => {
     expect(user.books.length).toBe(4)
     expect(userCopy.books.length).toBe(3)
     expect(userCopy.books).toEqual(['css', 'html', 'react'])
+
+})
+test('update company', () => {
+    let user: UserWithLaptopType & CompaniesType = {
+        name: 'Sasha',
+        hair: 32,
+        address: {
+            title: 'Spb',
+            house: 9
+        },
+        laptop:{
+            title: 'ZenBook'
+        },
+        companies: [ {id: 1 , title: 'tds'},{id: 2 , title: 'x-zone'}]
+    }
+
+
+    const userCopy = updateCompany(user,1,'Server' )
+
+    expect(user).not.toBe(userCopy)
+    expect(user.laptop).toBe(userCopy.laptop)
+    expect(user.address).toBe(userCopy.address)
+    expect(userCopy.companies[0].title).not.toBe('tds')
+    expect(userCopy.companies[0].title).toBe('Server')
+    expect(userCopy.companies).toEqual([ {id: 1 , title: 'Server'},{id: 2 , title: 'x-zone'}])
 
 })
