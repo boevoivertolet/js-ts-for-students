@@ -13,7 +13,7 @@ type UserType = {
     address: AddressType
 }
 
-test(' reference type test', () => {
+test.skip(' reference type test', () => {
     let user: UserType = {
         name: 'Sasha',
         age: 34,
@@ -33,7 +33,7 @@ test(' reference type test', () => {
     expect(user.age).toBe(1000)
 
 })
-test('array test', () => {
+test.skip('array test', () => {
     let users = [
         {
             name: 'Sasha',
@@ -52,7 +52,7 @@ test('array test', () => {
     expect(users[2]).toEqual({name: 'Taras', age: 21})
 
 })
-test('array reference test', () => {
+test.skip('array reference test', () => {
     let usersCount = 100
     let adminsCount = usersCount
     adminsCount++
@@ -60,7 +60,7 @@ test('array reference test', () => {
     expect(adminsCount).toBe(101)
 
 })
-test('big reference type test', () => {
+test.skip('big reference type test', () => {
     const address = {title: 'Minsk'}
 
     let user: UserType = {
@@ -82,7 +82,7 @@ test('big reference type test', () => {
     expect(user.address).toBe(user2.address)
 
 })
-test('Array reference type test', () => {
+test.skip('Array reference type test', () => {
     const address = {title: 'Minsk'}
 
     let user: UserType = {

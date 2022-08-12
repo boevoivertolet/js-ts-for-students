@@ -23,14 +23,14 @@ beforeEach(() => {
 })
 
 
-test('should update corresponding user from obj', () => {
+test.skip('should update corresponding user from obj', () => {
     users['101'].name = 'Aleksander'
 
     expect(users['101'].name).toBe('Aleksander')
 
 
 })
-test('should delete corresponding user from obj', () => {
+test.skip('should delete corresponding user from obj', () => {
     delete users['101']
 
     expect(users['101']).toBeUndefined();

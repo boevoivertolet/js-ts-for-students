@@ -1,4 +1,4 @@
-test('should take old men older then 90', () => {
+test.skip('should take old men older then 90', () => {
     const ages = [18, 92, 56, 45, 78, 23, 96, 54]; // исходный массив
     const predicate = (age: number) => age > 90;// функция, в которой описываются условия фильтрации.
     // если  в стрелочной функции после стрелки нет фигурных скобок, это значит, что всё, что после стрелки возвращается как результат функции.
@@ -11,7 +11,7 @@ test('should take old men older then 90', () => {
     expect(oldAges[1]).toBe(96)//ожидаем, что этот элемент равен 96
 
 })
-test('should take cheap courses', () => {
+test.skip('should take cheap courses', () => {
     const courses = [
         {title: 'css', price: 110},
         {title: 'JS', price: 200},
@@ -28,7 +28,7 @@ test('should take cheap courses', () => {
     expect(cheapCourses[1].title).toBe('react')//ожидаем, что в новом массиве в объексте title  с индексом 1 будет значение 'react'
 
 })
-test('get only completed tasks', () => {
+test.skip('get only completed tasks', () => {
     const tasks = [
         {id: 1, title: 'Bread', isDone: false},
         {id: 2, title: 'Milk', isDone: true},
@@ -45,7 +45,7 @@ test('get only completed tasks', () => {
 
 
 })
-test('get only uncompleted tasks', () => {
+test.skip('get only uncompleted tasks', () => {
     const tasks = [
         {id: 1, title: 'Bread', isDone: false},
         {id: 2, title: 'Milk', isDone: true},

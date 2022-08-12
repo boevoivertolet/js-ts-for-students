@@ -12,7 +12,7 @@ beforeEach(() => {
         {name: 'Taras Sidorov', age: 21}
     ]
 })
-test('should get array of greeting messages', () => {
+test.skip('should get array of greeting messages', () => {
 
     const messages = greetingsMessages(people)
     expect(messages.length).toBe(3);

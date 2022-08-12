@@ -1,22 +1,25 @@
 import {UserType} from './10-01';
 
 
-function hairdresser(u: UserType, power: number){
-    u.hair = u.hair / power
+function makeHairStyle(u: UserType, power: number) {
+    const copy = {...u, hair: u.hair / power}
+    return copy
 }
 
-test( 'reference type test',()=> {
-    let user: UserType={
+test('reference type test', () => {
+    let user: UserType = {
         name: 'Sasha',
         hair: 32,
-        address:{
+        address: {
             title: 'Spb'
         }
     }
-    hairdresser(user, 2)
 
-    expect(user.hair).toBe(16)
 
+    const cutUser = makeHairStyle(user, 2)
+
+    expect(cutUser.hair).toBe(16)
+    expect(user.hair).toBe(32)
 
 
 })

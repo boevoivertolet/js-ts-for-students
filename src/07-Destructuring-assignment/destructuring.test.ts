@@ -16,7 +16,7 @@ beforeEach(() => {
 })
 
 
-test('1', () => {
+test.skip('1', () => {
 
     /* const age = props.age
      const lessons = props.lessons*/ //Эти 2 строки эквивалентны
@@ -35,7 +35,7 @@ test('1', () => {
 })
 
 
-test('2', () => {
+test.skip('2', () => {
     const l1 = props.lessons[0]
     const l2 = props.lessons[1]
 
