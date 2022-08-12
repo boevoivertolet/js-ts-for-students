@@ -1,4 +1,13 @@
-import {makeHairStyle, moveUser, upgradeUserLaptop, UserType, UserWithLaptopType} from './10-01';
+import {
+    addNewBooksToUser,
+    makeHairStyle,
+    moveUser,
+    moveUserToOtherHouse,
+    upgradeUserLaptop,
+    UserType,
+    UserWithBooksType,
+    UserWithLaptopType
+} from './10-01';
 
 
 
@@ -8,7 +17,8 @@ test.skip('reference type test', () => {
         name: 'Sasha',
         hair: 32,
         address: {
-            title: 'Spb'
+            title: 'Spb',
+            house: 9
         }
     }
 
@@ -28,7 +38,8 @@ test.skip('change address', () => {
         name: 'Sasha',
         hair: 32,
         address: {
-            title: 'Spb'
+            title: 'Spb',
+            house: 9
         },
         laptop:{
             title: 'ZenBook'
@@ -46,12 +57,13 @@ test.skip('change address', () => {
 })
 
 
-test('upgrade laptop', () => {
+test.skip('upgrade laptop', () => {
     let user: UserWithLaptopType = {
         name: 'Sasha',
         hair: 32,
         address: {
-            title: 'Spb'
+            title: 'Spb',
+            house: 9
         },
         laptop:{
             title: 'ZenBook'
@@ -69,3 +81,54 @@ test('upgrade laptop', () => {
 
 })
 
+test('upgrade books', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Sasha',
+        hair: 32,
+        address: {
+            title: 'Spb',
+            house: 9
+        },
+        laptop:{
+            title: 'ZenBook'
+        },
+        books:['css', 'html', 'js', 'react']
+    }
+
+
+    const userCopy = moveUserToOtherHouse(user, 55)
+
+    expect(user).not.toBe(userCopy)
+    expect(user.books).toBe(userCopy.books)
+    expect(user.laptop).toBe(userCopy.laptop)
+    expect(user.address).not.toBe(userCopy.address)
+    expect(userCopy.address.house).toBe(55)
+
+})
+test('add new books to user', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Sasha',
+        hair: 32,
+        address: {
+            title: 'Spb',
+            house: 9
+        },
+        laptop:{
+            title: 'ZenBook'
+        },
+        books:['css', 'html', 'js', 'react']
+    }
+
+
+    const userCopy = addNewBooksToUser(user, ['ts', 'rest api'])
+
+    expect(user).not.toBe(userCopy)
+    expect(user.laptop).toBe(userCopy.laptop)
+    expect(user.address).toBe(userCopy.address)
+    expect(user.books).not.toBe(userCopy.books)
+    expect(userCopy.books[4]).toBe('ts')
+    expect(userCopy.books[5]).toBe('rest api')
+    expect(user.books.length).toBe(4)
+    expect(userCopy.books.length).toBe(6)
+
+})
